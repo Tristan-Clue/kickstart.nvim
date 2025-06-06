@@ -897,15 +897,18 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'tokyonight-night' (Remove comments and this bracket if in use)
     end,
   },
-  { 'EdenEast/nightfox.nvim' }, -- lazy
-  -- Load the colorscheme here.
-  -- Like many other themes, this one has different styles, and you could load
-  -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim
-    .cmd
-    .colorscheme 'dawnfox'
-    -- Highlight todo, notes, etc in comments
-    { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'EdenEast/nightfox.nvim', -- lazy
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'dawnfox'
+    end,
+    -- Load the colorscheme here.
+    -- Like many other themes, this one has different styles, and you could load
+    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  },
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
