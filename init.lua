@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- Set name and username global variable for stdheader
 vim.g.user42 = 'mjoon-yu'
@@ -905,11 +905,18 @@ require('lazy').setup({
     'EdenEast/nightfox.nvim', -- lazy
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'sorbet'
+      --  vim.cmd.colorscheme 'slate'
     end,
     -- Load the colorscheme here.
     -- Like many other themes, this one has different styles, and you could load
     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  },
+  {
+    'catppuccin/vim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'catppuccin_mocha'
+    end,
   },
   -- Highlight todo, notes, etc in comments
   {
@@ -923,18 +930,20 @@ require('lazy').setup({
       keywords = {
         FIX = {
           icon = ' ', -- icon used for the sign, and in search results
-          color = 'error', -- can be a hex color, or a named color (see below)
+          color = '#FFA8DE', -- can be a hex color, or a named color (see below)
           alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' }, -- a set of other keywords that all map to this FIX keywords
           -- signs = false, -- configure signs for some keywords individually
         },
-        TODO = { icon = ' ', color = 'info' },
-        HACK = { icon = ' ', color = 'warning' },
-        WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
-        PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-        NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
-        TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING' } },
-        PASSED = { icon = '⏲ ', color = 'pass' },
-        FAILED = { icon = '⏲ ', color = 'fail' },
+        TODO = { icon = ' ', color = '#BADEFF' },
+        HACK = { icon = '󰋮 ', color = '#FFF8BA', alt = { 'BREAKIT' } },
+        WARN = { icon = ' ', color = '#FFC9A1', alt = { 'WARNING', 'XXX' } },
+        PERF = { icon = '󰚭 ', color = '#DCA1FF', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+        NOTE = { icon = ' ', color = '#AEA1FF', alt = { 'INFO' } },
+        TEST = { icon = '󰙨 ', color = '#FFEBD6', alt = { 'TESTING' } },
+        PASSED = { icon = ' ', color = '#9EF79F' },
+        FAILED = { icon = ' ', color = '#F79E9E' },
+        WIP = { icon = ' ', color = '#AAC4FA' },
+        CATEGORY = { icon = ' ', color = '#A1FFDD' },
       },
       gui_style = {
         fg = 'NONE', -- The gui style to use for the fg highlight group.
@@ -968,6 +977,7 @@ require('lazy').setup({
         test = { 'Identifier', '#FF00FF' },
         pass = { '#65C3BA' },
         fail = { '#FF3E50' },
+        wip = { '#5DC3F0' },
       },
       search = {
         command = 'rg',
@@ -1096,6 +1106,7 @@ require('lazy').setup({
     },
   },
 })
+require 'ft_boilerplate'
 
 vim.o.shiftwidth = 4 -- Sets tab to 4 columns
 vim.o.tabstop = 4
